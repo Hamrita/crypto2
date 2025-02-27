@@ -203,7 +203,7 @@ crypto_history <- function(coin_list = NULL, convert="USD", limit = NULL, start_
   # Progress Bar 1
   pb <- progress_bar$new(format = ":spin [:current / :total] [:bar] :percent in :elapsedfull ETA: :eta",
                          total = nrow(id_vec), clear = FALSE)
-  message(cli::cat_bullet("Scraping historical crypto data", bullet = "pointer",bullet_col = "green"))
+  #message(cli::cat_bullet("Scraping historical crypto data", bullet = "pointer",bullet_col = "green"))
   data <- id_vec %>% dplyr::mutate(out = purrr::map(historyurl,.f=~insistent_scrape(.x)))
   if (!single_id) {if (nrow(coin_list)==1) {data2 <- data$out} else {data2 <- data$out %>% unlist(.,recursive=FALSE)}
   } else {
@@ -231,7 +231,7 @@ crypto_history <- function(coin_list = NULL, convert="USD", limit = NULL, start_
   # Progress Bar 2
   pb2 <- progress_bar$new(format = ":spin [:current / :total] [:bar] :percent in :elapsedfull ETA: :eta",
                           total = length(data2), clear = FALSE)
-  message(cli::cat_bullet("Processing historical crypto data", bullet = "pointer",bullet_col = "green"))
+  #message(cli::cat_bullet("Processing historical crypto data", bullet = "pointer",bullet_col = "green"))
   out_info <- purrr::map(data2,.f = ~ insistent_map(.x))
   #filter
 
